@@ -7,6 +7,7 @@ package projects.exception;
  * @author Asha
  *
  */
+
 @SuppressWarnings("serial")
 public class DbException extends RuntimeException {
 
