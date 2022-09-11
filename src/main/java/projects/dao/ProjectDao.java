@@ -3,6 +3,7 @@
  */
 package projects.dao;
 
+import projects.entity.Project;
 import provided.util.DaoBase;
 
 /**
@@ -10,5 +11,9 @@ import provided.util.DaoBase;
  *
  */
 public class ProjectDao extends DaoBase {
+
+	public Project insertProject(Project project) {
+		return null;
+	}
 
 }
