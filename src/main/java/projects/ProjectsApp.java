@@ -31,12 +31,34 @@ public class ProjectsApp {
 			try {
 				int selection = getUserSelection();
 				
+				switch(selection) {
+					case -1:
+						done = exitMenu();
+						break;
+						
+					case 1:
+						createProject();
+						break;
+					
+					default:
+						System.out.println("\n" + selection + " is not a valid selection. Try again.");
+						break;
+				}
 			}
 			catch (Exception e) {
 				System.out.println("\nError: " + e + " Try again.");
-				
 			}
 		}
+	}
+
+	private void createProject() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private boolean exitMenu() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	private int getUserSelection() {
