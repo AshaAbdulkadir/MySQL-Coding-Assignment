@@ -96,4 +96,10 @@ public class ProjectDao extends DaoBase {
 		}
 	}
 
+
+	public Object fetchProjectsById(Integer projectId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

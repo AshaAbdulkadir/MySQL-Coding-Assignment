@@ -23,4 +23,9 @@ public class ProjectService {
 		return projectDao.fetchAllProjects();
 	}
 
+	public Project fetchAllProjects(Integer projectId) {
+		return projectDao.fetchProjectsById(projectId).orElseThrow(() -> new NoSuchElementException(
+				"Project with project ID=" + projectId + " does not exist."));
+	}
+
 }
