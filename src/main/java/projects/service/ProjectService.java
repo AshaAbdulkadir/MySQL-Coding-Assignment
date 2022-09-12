@@ -20,8 +20,7 @@ public class ProjectService {
 	}
 
 	public List<Project> fetchAllProjects() {
-		// TODO Auto-generated method stub
-		return null;
+		return projectDao.fetchAllProjects();
 	}
 
 }
