@@ -116,7 +116,7 @@ public class ProjectsApp {
 	}
 
 	private String getStringInput(String prompt) {
-		System.out.println(prompt + ": ");
+		System.out.print(prompt + ": ");
 		String input = scanner.nextLine();
 		
 		return input.isBlank() ? null : input.trim();
