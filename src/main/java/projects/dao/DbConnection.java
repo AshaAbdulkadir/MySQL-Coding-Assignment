@@ -29,6 +29,7 @@ public class DbConnection {
 			System.out.println("Connection successful!");
 			return conn;
 		} catch (SQLException e) {
+			System.out.println("An error occured");
 			throw new DbException(e);
 		}
 		

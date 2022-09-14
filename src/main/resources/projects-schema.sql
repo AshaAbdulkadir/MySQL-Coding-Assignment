@@ -8,9 +8,9 @@ DROP TABLE IF EXISTS project;
 CREATE TABLE project (
 	project_id INT AUTO_INCREMENT NOT NULL,
 	project_name VARCHAR(128) NOT NULL,
-	estimated_hours TIME,
-	actual_hours TIME,
-	difficulty INT NOT NULL,
+	estimated_hours DECIMAL(7, 2),
+	actual_hours DECIMAL (7, 2),
+	difficulty INT,
 	notes TEXT,
 	PRIMARY KEY (project_id)
 );
@@ -34,8 +34,8 @@ CREATE TABLE material (
 	material_id INT AUTO_INCREMENT NOT NULL,
 	project_id INT NOT NULL,
 	material_name VARCHAR(128) NOT NULL,
-	num_required INT NULL,
-	cost DECIMAL(7,2),
+	num_required INT,
+	cost DECIMAL(7, 2),
 	PRIMARY KEY (material_id),
 	FOREIGN KEY (project_id) REFERENCES project (project_id) ON DELETE CASCADE
 );

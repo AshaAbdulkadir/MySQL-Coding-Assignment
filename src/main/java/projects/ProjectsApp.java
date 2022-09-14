@@ -24,6 +24,7 @@ public class ProjectsApp {
 	// @formatter:on
 
 	public static void main(String[] args) {
+		
 		new ProjectsApp().processUserSelections();
 		
 	}
@@ -61,6 +62,7 @@ public class ProjectsApp {
 			}
 			catch (Exception e) {
 				System.out.println("\nError: " + e + " Try again.");
+				e.printStackTrace();
 			}
 		}
 	}
@@ -71,32 +73,31 @@ public class ProjectsApp {
 		
 		curProject = null;
 		
+		curProject = projectService.fetchAllProjects(projectId);
+		
 		if (Objects.isNull(curProject)) {
-			System.out.println("\nYou are not working with a project.");
-		}
-		else {
-			System.out.println("\nYou are working with project: " + curProject);
+			
+			System.out.println("Invalid projectID selected.");
 		}
 		
-		curProject = projectService.fetchAllProjects(projectId);
 		
 	}
 
 	private void listProjects() {
 		List<Project> projects = projectService.fetchAllProjects();
 		
-		System.out.println("\nProjects:");
+		System.out.println("\nProjects: ");
 		
 		projects.forEach(project -> System.out.println("  " + project.getProjectId() + ": " + project.getProjectName()));
 		
 	}
 
 	private void createProject() {
-		String projectName = getStringInput("Enter the project name");
-		BigDecimal estimatedHours = getDecimalInput("Enter the estimated hours");
-		BigDecimal actualHours = getDecimalInput ("Enter the actual hours");
-		Integer difficulty = getIntInput("Enter the project difficulty(1-5)");
-		String notes = getStringInput("Enter the project notes");
+		String projectName = getStringInput("Enter the project name.");
+		BigDecimal estimatedHours = getDecimalInput("Enter the estimated hours.");
+		BigDecimal actualHours = getDecimalInput ("Enter the actual hours.");
+		Integer difficulty = getIntInput("Enter the project difficulty(1-5).");
+		String notes = getStringInput("Enter the project notes.");
 		
 		Project project = new Project();
 		
@@ -108,6 +109,14 @@ public class ProjectsApp {
 		
 		Project dbProject = projectService.addProject(project);
 		System.out.println("You have successfully created project: " + dbProject);
+		
+		if (Objects.isNull(curProject)) {
+			System.out.println("\nYou are not working with a project.");
+		}
+		else {
+			System.out.println("\nYou are working with project: " + curProject);
+		}
+		
 	}
 
 	private BigDecimal getDecimalInput(String prompt) {
@@ -126,7 +135,7 @@ public class ProjectsApp {
 	}
 
 	private boolean exitMenu() {
-		System.out.println("Exiting the menu.");
+		System.out.println("Exiting the menu. TTFN!");
 		return true;
 	}
 
@@ -160,10 +169,18 @@ public class ProjectsApp {
 	}
 
 	private void printOperations() {
-		System.out.println();
+		
 		System.out.println("\nThese are the available selections. Press the Enter key to quit:");
 		
 		operations.forEach(line -> System.out.println("  " + line));
+		
+		if (Objects.isNull(curProject)) {
+			System.out.println("\nYou are not working with a project.");
+		}
+		else {
+			System.out.println("\nYou are working with project: " + curProject);
+		}
+		
 				
 		
 	}
