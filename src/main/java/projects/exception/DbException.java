@@ -30,7 +30,6 @@ public class DbException extends RuntimeException {
 	 * @param cause
 	 */
 	public DbException(Throwable cause) {
-		super(cause);
 		
 	}
 
@@ -39,7 +38,6 @@ public class DbException extends RuntimeException {
 	 * @param cause
 	 */
 	public DbException(String message, Throwable cause) {
-		super(message, cause);
 		
 	}
 

@@ -66,33 +66,9 @@ public class ProjectsApp {
 			}
 		}
 	}
-
-	private void selectProject() {
-		listProjects();
-		Integer projectId = getIntInput("Enter a project ID to select a project");
-		
-		curProject = null;
-		
-		curProject = projectService.fetchAllProjects(projectId);
-		
-		if (Objects.isNull(curProject)) {
-			
-			System.out.println("Invalid projectID selected.");
-		}
-		
-		
-	}
-
-	private void listProjects() {
-		List<Project> projects = projectService.fetchAllProjects();
-		
-		System.out.println("\nProjects: ");
-		
-		projects.forEach(project -> System.out.println("  " + project.getProjectId() + ": " + project.getProjectName()));
-		
-	}
-
+	
 	private void createProject() {
+		
 		String projectName = getStringInput("Enter the project name.");
 		BigDecimal estimatedHours = getDecimalInput("Enter the estimated hours.");
 		BigDecimal actualHours = getDecimalInput ("Enter the actual hours.");
@@ -110,15 +86,59 @@ public class ProjectsApp {
 		Project dbProject = projectService.addProject(project);
 		System.out.println("You have successfully created project: " + dbProject);
 		
-		if (Objects.isNull(curProject)) {
-			System.out.println("\nYou are not working with a project.");
-		}
-		else {
-			System.out.println("\nYou are working with project: " + curProject);
-		}
+	}
+	
+	
+	private void listProjects() {
+		List<Project> projects = projectService.fetchAllProjects();
+		
+		System.out.println("\nProjects: "); 
+		
+		// @formatter:off
+		
+		projects.forEach(project -> 
+		System.out.println("  " + project.getProjectId() + ": " + project.getProjectName()));
+		
+		// @formatter:on
 		
 	}
-
+	
+	
+	private void selectProject() {
+		listProjects();
+		Integer projectId = getIntInput("Enter a project ID to select a project");
+		
+		curProject = null;
+		
+		curProject = projectService.fetchAllProjectById(projectId);
+	
+	}
+	
+	private int getUserSelection() {
+		
+		printOperations();
+		Integer input = getIntInput("Enter a menu selection");
+		return Objects.isNull(input) ? -1 : input;
+		
+	}
+	
+	
+	private Integer getIntInput(String prompt) {
+		String input = getStringInput(prompt);
+		
+		if (Objects.isNull(input)) {
+			return null;
+		}
+		
+		try {
+			return Integer.valueOf(input);
+		}
+		catch (NumberFormatException e) {
+			throw new DbException(input + "is not a valid number.");
+		}
+	}
+	
+	
 	private BigDecimal getDecimalInput(String prompt) {
 		String input = getStringInput(prompt);
 		
@@ -135,32 +155,11 @@ public class ProjectsApp {
 	}
 
 	private boolean exitMenu() {
-		System.out.println("Exiting the menu. TTFN!");
+		System.out.println("Exiting the menu. Thank you!");
 		return true;
 	}
 
-	private int getUserSelection() {
-		printOperations();
-		
-		Integer input = getIntInput("Enter a menu selection");
-		return Objects.isNull(input) ? -1 : input;
-	}
-
-	private Integer getIntInput(String prompt) {
-		String input = getStringInput(prompt);
-		
-		if (Objects.isNull(input)) {
-			return null;
-		}
-		
-		try {
-			return Integer.valueOf(input);
-		}
-		catch (NumberFormatException e) {
-			throw new DbException(input + "is not a valid number.");
-		}
-	}
-
+	
 	private String getStringInput(String prompt) {
 		System.out.print(prompt + ": ");
 		String input = scanner.nextLine();

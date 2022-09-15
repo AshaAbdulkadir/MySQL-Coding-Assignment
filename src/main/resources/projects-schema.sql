@@ -2,10 +2,10 @@ DROP TABLE IF EXISTS project_category;
 DROP TABLE IF EXISTS material;
 DROP TABLE IF EXISTS step;
 DROP TABLE IF EXISTS category;
-DROP TABLE IF EXISTS project;
+DROP TABLE IF EXISTS projects;
 
 
-CREATE TABLE project (
+CREATE TABLE projects (
 	project_id INT AUTO_INCREMENT NOT NULL,
 	project_name VARCHAR(128) NOT NULL,
 	estimated_hours DECIMAL(7, 2),
