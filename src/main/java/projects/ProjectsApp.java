@@ -18,7 +18,8 @@ public class ProjectsApp {
 	private List<String> operations = List.of(
 			"1) Add a project",
 			"2) List projects",
-			"3) Select a project"
+			"3) Select a project",
+			"4) Update project details"
 			
 	);
 	// @formatter:on
@@ -54,6 +55,9 @@ public class ProjectsApp {
 					case 3:
 						selectProject();
 						break;
+						
+					case 4:
+						updateProjectDetails();
 					
 					default:
 						System.out.println("\n" + selection + " is not a valid selection. Try again.");
@@ -67,6 +71,18 @@ public class ProjectsApp {
 		}
 	}
 	
+	private void updateProjectDetails() {
+		
+		curProject = null;
+		String projectName = getStringInput("Enter the project name [" + curProject.getProjectName() + "]");
+		
+		Project project = new Project();
+		project.setProjectName(Objects.isNull(projectName) 
+				? curProject.getProjectName() : projectName);
+		
+		
+	}
+
 	private void createProject() {
 		
 		String projectName = getStringInput("Enter the project name.");
