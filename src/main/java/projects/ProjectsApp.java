@@ -80,6 +80,9 @@ public class ProjectsApp {
 		project.setProjectName(Objects.isNull(projectName) 
 				? curProject.getProjectName() : projectName);
 		
+		projectService.modifyProjectDetails(project);
+		curProject = projectService.fetchAllProjectById(curProject.getProjectId());
+		
 		
 	}
 
