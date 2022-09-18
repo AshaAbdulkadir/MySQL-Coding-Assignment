@@ -209,9 +209,7 @@ public class ProjectsApp {
 		else {
 			System.out.println("\nYou are working with project: " + curProject);
 		}
-		
-				
-		
+
 	}
 
 }
