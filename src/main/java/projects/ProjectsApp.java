@@ -62,7 +62,7 @@ public class ProjectsApp {
 						break;
 						
 					case 5:
-						deleteproject();
+						deleteProject();
 						break;
 					
 					default:
@@ -77,7 +77,7 @@ public class ProjectsApp {
 		}
 	}
 	
-	private void deleteproject() {
+	private void deleteProject() {
 		listProjects();
 		
 		Integer projectId = getIntInput("Enter the ID of the project to delete");
