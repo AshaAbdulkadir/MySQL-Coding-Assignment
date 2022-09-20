@@ -32,7 +32,7 @@ public class ProjectService {
 		
 	}
 
-	public Project fetchAllProjectById(Integer projectId) {
+	public Project fetchProjectById(Integer projectId) {
 		
 		// @formatter:off
 		return projectDao.fetchProjectById(projectId).orElseThrow(() -> new NoSuchElementException(

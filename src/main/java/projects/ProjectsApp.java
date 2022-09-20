@@ -96,23 +96,35 @@ public class ProjectsApp {
 			return;
 		}
 		
-		String projectName = getStringInput("Enter the project name [" + curProject.getProjectName() + "]");
-		BigDecimal estimatedHours = getDecimalInput("Enter the estimated hours + [" + curProject.getEstimatedHours() + "]");
-		BigDecimal actualHours = getDecimalInput("Enter the actual hours + [" + curProject.getActualHours() + "]");
-		Integer difficulty = getIntInput("enter the project difficulty (1-5) [" + curProject.getDifficulty() + "]");
+		String projectName = 
+				getStringInput("Enter the project name [" + curProject.getProjectName() + "]");
+		
+		BigDecimal estimatedHours = 
+				getDecimalInput("Enter the estimated hours + [" + curProject.getEstimatedHours() + "]");
+		
+		BigDecimal actualHours = 
+				getDecimalInput("Enter the actual hours + [" + curProject.getActualHours() + "]");
+		
+		Integer difficulty = 
+				getIntInput("Enter the project difficulty (1-5) [" + curProject.getDifficulty() + "]");
+		
 		String notes = getStringInput("Enter the project notes [" + curProject.getNotes() + "]");
 		
 		Project project = new Project();
+		
 		project.setProjectId(curProject.getProjectId());
 		project.setProjectName(Objects.isNull(projectName) ? curProject.getProjectName() : projectName);
-		project.setEstimatedHours(Objects.isNull(estimatedHours) ? curProject.getEstimatedHours() : estimatedHours);
+		
+		project.setEstimatedHours(
+				Objects.isNull(estimatedHours) ? curProject.getEstimatedHours() : estimatedHours);
+		
 		project.setActualHours(Objects.isNull(actualHours) ? curProject.getActualHours() : actualHours);
 		project.setDifficulty(Objects.isNull(difficulty) ? curProject.getDifficulty() : difficulty);
 		project.setNotes(Objects.isNull(notes) ? curProject.getNotes() : notes);
 		
 		projectService.modifyProjectDetails(project);
 		
-		curProject = projectService.fetchAllProjectById(curProject.getProjectId());
+		curProject = projectService.fetchProjectById(curProject.getProjectId());
 	}
 
 	private void createProject() {
@@ -158,7 +170,7 @@ public class ProjectsApp {
 		
 		curProject = null;
 		
-		curProject = projectService.fetchAllProjectById(projectId);
+		curProject = projectService.fetchProjectById(projectId);
 	
 	}
 	
@@ -166,6 +178,7 @@ public class ProjectsApp {
 		
 		printOperations();
 		Integer input = getIntInput("Enter a menu selection");
+		
 		return Objects.isNull(input) ? -1 : input;
 		
 	}
